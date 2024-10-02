@@ -1,5 +1,5 @@
 # Use the official Prometheus base image
-FROM prom/prometheus:v${PROMETHEUS_VERSION}
+FROM prom/prometheus
 
 # Apply this repo's prometheus.yml file
 ADD prometheus.yml /etc/prometheus/
