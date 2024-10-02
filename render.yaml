@@ -4,7 +4,7 @@ services:
 - type: web
   name: prometheus
   runtime: docker
-  plan: starter
+  plan: free
   disk:
     name: prometheus-disk
     mountPath: /var/data
