@@ -1,8 +1,15 @@
-# Use the official Prometheus base image
-FROM prom/prometheus
+FROM prom/prometheus:latest
 
-# Crea el directorio para los logs y las consultas activas de Prometheus
+USER root
+
+# Create the directory for Prometheus logs and active queries
 RUN mkdir -p /var/data/prometheus
+
+# Copy your prometheus.yml configuration file to the container
+COPY prometheus.yml /etc/prometheus/prometheus.yml
+
+# Expose the necessary port for Prometheus
+EXPOSE 9090
 
 # Aplica el archivo prometheus.yml de este repositorio
 ADD prometheus.yml /etc/prometheus/
