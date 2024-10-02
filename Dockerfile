@@ -1,16 +1,17 @@
 # Use the official Prometheus base image
 FROM prom/prometheus
 
-# Apply this repo's prometheus.yml file
+# Crea el directorio para los logs y las consultas activas de Prometheus
+RUN mkdir -p /var/data/prometheus
+
+# Aplica el archivo prometheus.yml de este repositorio
 ADD prometheus.yml /etc/prometheus/
 
-# Sets the Render service name in prometheus.yml
-# using the RENDER_SERVICE_NAME environment variable
+# Configura el nombre del servicio Render en prometheus.yml
 ARG RENDER_SERVICE_NAME
 RUN sed -i "s/RENDER_SERVICE_NAME/${RENDER_SERVICE_NAME}/g" /etc/prometheus/prometheus.yml
 
-# Sets the storage path to your persistent disk path,
-# plus other config
+# Establece la ruta de almacenamiento al disco persistente
 CMD [ "--storage.tsdb.path=/var/data/prometheus", \
       "--config.file=/etc/prometheus/prometheus.yml", \
       "--web.console.libraries=/usr/share/prometheus/console_libraries", \
