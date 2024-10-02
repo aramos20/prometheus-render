@@ -1,6 +1,3 @@
-# Specify a different Prometheus version as needed
-ARG PROMETHEUS_VERSION=2.52.0
-
 # Use the official Prometheus base image
 FROM prom/prometheus:v${PROMETHEUS_VERSION}
 
